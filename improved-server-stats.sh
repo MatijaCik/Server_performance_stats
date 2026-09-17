@@ -37,12 +37,16 @@ top_mem=$(ps -eo pid,comm,%mem --sort=-%mem | head -n 6)
 name=$(whoami)
 
 uptime_users=$(w)
+running_os=$(grep -E '^(VERSION|NAME)=' /etc/os-release)
 clear
 RED='\033[0;31m'
 NC='\033[0m' # No Color
-printf "I ${RED}love${NC} Stack Overflow\n"
+#printf "I ${RED}love${NC} Stack Overflow\n"
 printf "Hello user ${RED}%s${NC}\n\n"        "$name"
-printf "Uptime_and_users: \n %s\n" "$uptime_users"
+echo -e "--------------------------------------\n           ${RED}SERVER STATS${NC}  \n--------------------------------------"
+#echo -e "--------------------------------------\n           ${RED} \e[5mSERVER STATS${NC} \e[25m \n--------------------------------------"
+printf "Running OS:\n%s\n\n" "$running_os"
+printf "Uptime_and_users: \n %s\n\n" "$uptime_users"
 printf "CPU Usage:     %6s%%\n" "$usage"
 printf "Free memory:   %6s%%\n" "$free_mem"
 printf "Used memory:   %6s%%\n" "$used_mem"
